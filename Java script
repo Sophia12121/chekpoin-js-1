@@ -1,0 +1,36 @@
+let totalScore = 0;
+
+function addTask() {
+    const taskName = document.getElementById('task-name').value;
+    const points = parseInt(document.getElementById('difficulty').value);
+
+    if (taskName === "") {
+        alert("Please enter a task name");
+        return;
+    }
+
+    // Creating a task object
+    const task = {
+        name: taskName,
+        value: points
+    };
+
+    // Update the UI
+    displayTask(task);
+    updateScore(task.value);
+
+    // Clear input
+    document.getElementById('task-name').value = "";
+}
+
+function displayTask(task) {
+    const list = document.getElementById('task-list');
+    const entry = document.createElement('li');
+    entry.innerHTML = `<span>${task.name}</span> <b>+${task.value}</b>`;
+    list.appendChild(entry);
+}
+
+function updateScore(points) {
+    totalScore += points;
+    document.getElementById('total-points').innerText = totalScore;
+}
